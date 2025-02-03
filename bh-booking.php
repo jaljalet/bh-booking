@@ -10,4 +10,17 @@
  * Text Domain: bh-booking
  */
 
- if( ! defined( 'ABSPATH' ) ) exit();
+ if ( ! defined( 'ABSPATH' ) ) exit;
+
+ class BH_Booking {
+
+    static function activation() {
+        flush_rewrite_rules();
+    }
+
+    static function deactivation() {
+        flush_rewrite_rules();
+    }
+ }
+
+ BH_Booking::instance();
