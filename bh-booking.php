@@ -6,6 +6,7 @@
  * Version: 1.0.0
  * Author: Islam Ilyasoglu
  * Author URI: https://bilisimhizmet.com/
+ * Licence: GPLv2 or later
  * Text Domain: bh-booking
  */
 
