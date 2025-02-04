@@ -42,15 +42,22 @@ along with Bilisimhizmet Booking. If not, see https://www.gnu.org/licenses/gpl-2
         define('BH_BOOKING_VERSION', '1.0.0');
     }
 
-    static function activation() {
+    public static function activate() {
+        update_option( 'rewrite_rules', '' );
+    }
+
+    public static function deactivate() {
         flush_rewrite_rules();
     }
 
-    static function deactivation() {
-        flush_rewrite_rules();
+    public static function uninstall() {
+        
     }
  }
 
  if(class_exists('BH_Booking')) {
+    register_activation_hook( __FILE__, array('BH_Booking', 'activate') );
+    register_deactivation_hook( __FILE__, array('BH_Booking', 'deactivate') );
+    register_uninstall_hook(__FILE__, array('BH_Booking', 'uninstall') );
     $bh_booking = new BH_Booking();
  }
