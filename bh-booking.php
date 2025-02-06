@@ -34,6 +34,9 @@ along with Bilisimhizmet Booking. If not, see https://www.gnu.org/licenses/gpl-2
  class BH_Booking {
     function __construct() {
         $this->define_constants();
+
+        require_once(BH_BOOKING_PATH . 'post-types/class.bh-booking-cpt.php');
+        $BH_Booking_Post_Type = new BH_Booking_Post_Type();
     }
 
     public function define_constants() {
@@ -48,6 +51,7 @@ along with Bilisimhizmet Booking. If not, see https://www.gnu.org/licenses/gpl-2
 
     public static function deactivate() {
         flush_rewrite_rules();
+        unregister_post_type('bh-center');
     }
 
     public static function uninstall() {
