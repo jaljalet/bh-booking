@@ -138,7 +138,7 @@ if(!class_exists('BH_Booking_Post_type')) {
         }
 
         public function add_inner_bh_programs_price_days_meta_boxes($post) {
-            echo 'Program Price and Days';
+            require_once(BH_BOOKING_PATH . 'views/program-price-days_metabox.php');
         }
 
         public function add_inner_bh_programs_includes_meta_boxes($post) {
