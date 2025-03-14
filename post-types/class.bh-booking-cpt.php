@@ -4,6 +4,7 @@ if(!class_exists('BH_Booking_Post_type')) {
     class BH_Booking_Post_type {
         function __construct() {
             add_action('init', array($this, 'create_post_type'));
+            add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
         }
 
         public function create_post_type() {
@@ -31,6 +32,7 @@ if(!class_exists('BH_Booking_Post_type')) {
                     'publicly_queryable' => true,
                     'show_in_rest' => true,
                     'menu_icon' => 'dashicons-building',
+                    //'register_meta_box_cb' => array($this, 'add_meta_boxes'),
                 ),
             );
 
@@ -44,7 +46,7 @@ if(!class_exists('BH_Booking_Post_type')) {
                         'singular_name' => 'Program',
                     ),
                     'public' => true,
-                    'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+                    'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
                     'hierarchical' => false,
                     'show_ui' => true,
                     'show_in_menu' => true,
@@ -115,5 +117,33 @@ if(!class_exists('BH_Booking_Post_type')) {
                 ),
             );
         }
+
+        public function add_meta_boxes() {
+            add_meta_box(
+                'bh_programs_price_days_meta_box',
+                'Program Price and Days',
+                array($this, 'add_inner_bh_programs_price_days_meta_boxes'),
+                'bh-program',
+                'side',
+                'high',
+            );
+            add_meta_box(
+                'bh_programs_includes_meta_box',
+                'Program Includes',
+                array($this, 'add_inner_bh_programs_includes_meta_boxes'),
+                'bh-program',
+                'normal',
+                'high',
+            );
+        }
+
+        public function add_inner_bh_programs_price_days_meta_boxes($post) {
+            echo 'Program Price and Days';
+        }
+
+        public function add_inner_bh_programs_includes_meta_boxes($post) {
+            echo 'Program Includes';
+        }
+
     }
 }
